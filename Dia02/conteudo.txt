@@ -1,0 +1,14 @@
+- Estrutura de um projeto Android;
+- Splash Screen utilizando windowBackground;
+- Troca de icone da aplicacao;
+- ConstraintLayout: 
+	- Baseline;
+	- Guideline;
+	- Barrier;
+	- Chains;
+	- Groups.
+
+- Navigation Drawer;
+- Toolbar;
+- CardView;
+- BottomNavigation.
