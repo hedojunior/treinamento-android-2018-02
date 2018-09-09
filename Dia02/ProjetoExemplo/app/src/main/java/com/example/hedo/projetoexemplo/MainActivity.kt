@@ -45,9 +45,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
 
             R.id.nav_item_2 -> {
-                Toast.makeText(this,
-                        "Item 2",
-                        Toast.LENGTH_SHORT).show()
+                intent = Intent(this, SecondScreenActivity::class.java)
             }
 
             R.id.nav_item_3 -> {
