@@ -2,4 +2,27 @@
     <string name="app_name">Marvel</string>
     <string name="hello_world">Hello world!</string>
     <string name="the_art_museum">THE\nART\nMUSEUM</string>
+    <string name="back_arrow_image_cdesc">Back arrow image</string>
+    <string name="more_options_image_cdesc">More options button</string>
+    <string name="notifications">Notifications</string>
+    <string name="flight_icon_cdesc">Flight icon</string>
+    <string name="flight_detail">1h57min ago</string>
+    <string name="flight_title">Reminder: You better be ready! Your flight is\ntomorrow at 9am</string>
+    <string name="offer_icon_cdesc">Offer icon</string>
+    <string name="offer_title">Offer: Off-Season in Formentera is really what\nyou need! Have a look</string>
+    <string name="offer_detail">Yesterday, 5:47pm</string>
+    <string name="transfer_icon_cdesc">Transfer icon</string>
+    <string name="food_icon_cdesc">Food icon</string>
+    <string name="transfer_title">Reminder: Your transfer from the loft to the\nairport is ready to pick you up on 3/9/18 at\n5pm</string>
+    <string name="transfer_detail">Thursday, 7:02pm</string>
+    <string name="food_title">Discover the best places to eat near you.\nThere’s a lot of choice!</string>
+    <string name="food_detail">Thursday, 11:03am</string>
+    <string name="menu_icon_cdesc">Menu icon</string>
+    <string name="shop">Shop</string>
+    <string name="watch_image_cdesc">Watch image</string>
+    <string name="watch_title">Braun Classic Watch</string>
+    <string name="watch_description">This Braun watch is a reissue of the original 1970\'s design from renowned design team Dietrich Lubs and Dieter Rams, both of whom have work featured in the Museum’s collection. The large watch features a numbered face, and the smaller watch has only index lines. Made of a matte stainless-steel case, black dial,</string>
+    <string name="watch_price">$160.00</string>
+    <string name="watch_member_price">$140.00 Member Price</string>
+    <string name="add_to_cart">Add to Cart</string>
 </resources>

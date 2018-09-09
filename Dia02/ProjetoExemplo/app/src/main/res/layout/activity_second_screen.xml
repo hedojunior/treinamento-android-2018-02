@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".SecondScreenActivity">
+
+        <!--Back Arrow-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/back_arrow_image_cdesc"
+            android:src="@drawable/ic_arrow_back_black"
+            app:layout_constraintBottom_toTopOf="@id/topGuideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--More Options-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/more_options_image_cdesc"
+            android:src="@drawable/ic_more_horiz"
+            app:layout_constraintBottom_toTopOf="@id/topGuideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--Top Guideline-->
+        <android.support.constraint.Guideline
+            android:id="@+id/topGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="60dp" />
+
+        <!--"Notifications" label-->
+        <TextView
+            android:id="@+id/textViewNotifications"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/abel"
+            android:text="@string/notifications"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topGuideline" />
+
+        <!--Flight Notification start-->
+
+        <!--Icon-->
+        <ImageView
+            android:id="@+id/ivFlight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/flight_icon_cdesc"
+            android:src="@drawable/ic_flight"
+            app:layout_constraintBottom_toBottomOf="@id/tvFlightDetail"
+            app:layout_constraintStart_toStartOf="@id/textViewNotifications"
+            app:layout_constraintTop_toTopOf="@id/tvFlight" />
+
+        <!--Title-->
+        <TextView
+            android:id="@+id/tvFlight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/abel"
+            android:text="@string/flight_title"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toEndOf="@id/ivFlight"
+            app:layout_constraintTop_toBottomOf="@id/textViewNotifications" />
+
+        <!--Subtitle-->
+        <TextView
+            android:id="@+id/tvFlightDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abel"
+            android:text="@string/flight_detail"
+            android:textColor="@color/light_grey"
+            android:textSize="@dimen/text_small"
+            app:layout_constraintStart_toStartOf="@id/tvFlight"
+            app:layout_constraintTop_toBottomOf="@id/tvFlight" />
+
+        <!--Flight Notification end-->
+
+        <!--Offer Notification start-->
+
+        <!--Icon-->
+        <ImageView
+            android:id="@+id/ivOffer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/offer_icon_cdesc"
+            android:src="@drawable/ic_offer"
+            app:layout_constraintBottom_toBottomOf="@id/tvOfferDetail"
+            app:layout_constraintStart_toStartOf="@id/ivFlight"
+            app:layout_constraintTop_toTopOf="@id/tvOffer" />
+
+        <!--Title-->
+        <TextView
+            android:id="@+id/tvOffer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/abel"
+            android:text="@string/offer_title"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toStartOf="@id/tvFlightDetail"
+            app:layout_constraintTop_toBottomOf="@id/tvFlightDetail" />
+
+        <!--Subtitle-->
+        <TextView
+            android:id="@+id/tvOfferDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abel"
+            android:text="@string/offer_detail"
+            android:textColor="@color/light_grey"
+            android:textSize="@dimen/text_small"
+            app:layout_constraintStart_toStartOf="@id/tvOffer"
+            app:layout_constraintTop_toBottomOf="@id/tvOffer" />
+
+        <!--Offer Notification end-->
+
+        <!--Transfer Notification start-->
+
+        <!--Icon-->
+        <ImageView
+            android:id="@+id/ivTransfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/transfer_icon_cdesc"
+            android:src="@drawable/ic_transfer"
+            app:layout_constraintBottom_toBottomOf="@id/tvTransferDetail"
+            app:layout_constraintStart_toStartOf="@id/ivOffer"
+            app:layout_constraintTop_toTopOf="@id/tvTransfer" />
+
+        <!--Title-->
+        <TextView
+            android:id="@+id/tvTransfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/abel"
+            android:text="@string/transfer_title"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toStartOf="@id/tvOfferDetail"
+            app:layout_constraintTop_toBottomOf="@id/tvOfferDetail" />
+
+        <!--Subtitle-->
+        <TextView
+            android:id="@+id/tvTransferDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abel"
+            android:text="@string/transfer_detail"
+            android:textColor="@color/light_grey"
+            android:textSize="@dimen/text_small"
+            app:layout_constraintStart_toStartOf="@id/tvTransfer"
+            app:layout_constraintTop_toBottomOf="@id/tvTransfer" />
+
+        <!--Transfer Notification end-->
+
+        <!--Food Notification start-->
+
+        <!--Icon-->
+        <ImageView
+            android:id="@+id/ivFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/food_icon_cdesc"
+            android:src="@drawable/ic_food"
+            app:layout_constraintBottom_toBottomOf="@id/tvFoodDetail"
+            app:layout_constraintStart_toStartOf="@id/ivTransfer"
+            app:layout_constraintTop_toTopOf="@id/tvFood" />
+
+        <!--Title-->
+        <TextView
+            android:id="@+id/tvFood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/abel"
+            android:text="@string/food_title"
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toStartOf="@id/tvTransferDetail"
+            app:layout_constraintTop_toBottomOf="@id/tvTransferDetail" />
+
+        <!--Subtitle-->
+        <TextView
+            android:id="@+id/tvFoodDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abel"
+            android:text="@string/food_detail"
+            android:textColor="@color/light_grey"
+            android:textSize="@dimen/text_small"
+            app:layout_constraintStart_toStartOf="@id/tvFood"
+            app:layout_constraintTop_toBottomOf="@id/tvFood" />
+
+        <!--Food Notification end-->
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
