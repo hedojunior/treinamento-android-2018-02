@@ -1,5 +1,6 @@
 package com.example.hedo.projetoexemplo
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == android.R.id.home)  {
+        if (item?.itemId == android.R.id.home) {
             drawerLayout.openDrawer(GravityCompat.START)
             return true
         }
@@ -36,11 +37,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        var intent = Intent()
+
         when (item.itemId) {
             R.id.nav_item_1 -> {
-                Toast.makeText(this,
-                        "Item 1",
-                        Toast.LENGTH_SHORT).show()
+                intent = Intent(this, FirstScreenActivity::class.java)
             }
 
             R.id.nav_item_2 -> {
@@ -54,10 +55,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         "Item 3",
                         Toast.LENGTH_SHORT).show()
             }
-            else -> { return false }
+            else -> {
+                return false
+            }
         }
 
         drawerLayout.closeDrawers()
+        startActivity(intent)
         return true
     }
 }
