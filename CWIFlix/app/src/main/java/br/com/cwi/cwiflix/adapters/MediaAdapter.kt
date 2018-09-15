@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.view_media.view.*
 /**
  * @author hedo
  */
-class MediaAdapter(val items: List<Media>)
+class MediaAdapter(val items: List<Media>, val onClick: (media: Media) -> Unit)
     : RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,6 +30,10 @@ class MediaAdapter(val items: List<Media>)
                 .with(holder.itemView.context)
                 .load(ImageURLProvider.small(item.image))
                 .into(holder.posterImageButton)
+
+        holder.posterImageButton.setOnClickListener {
+            onClick(item)
+        }
     }
 
     override fun getItemCount() = items.size

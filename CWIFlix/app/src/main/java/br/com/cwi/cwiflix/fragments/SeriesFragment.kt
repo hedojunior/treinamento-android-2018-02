@@ -7,39 +7,61 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import br.com.cwi.cwiflix.BuildConfig
 import br.com.cwi.cwiflix.R
+import br.com.cwi.cwiflix.adapters.MediaAdapter
+import br.com.cwi.cwiflix.api.MovieDatabaseService
+import br.com.cwi.cwiflix.api.models.MediaResult
+import kotlinx.android.synthetic.main.fragment_media.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
-class SeriesFragment : Fragment() {
+class SeriesFragment : Fragment(), Callback<MediaResult> {
+    lateinit var adapter: MediaAdapter
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_series, container, false)
+
+        MovieDatabaseService.service.getPopularTVShows().enqueue(this)
+
+        return inflater.inflate(R.layout.fragment_media, container, false)
     }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        Log.d("fragmentCycle - Series", "onCreate")
+    override fun onFailure(call: Call<MediaResult>, t: Throwable) {
+        Log.e("SeriesFragment", t.localizedMessage, t);
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onResponse(call: Call<MediaResult>, response: Response<MediaResult>) {
+        response.body()?.results?.let {
 
-        Log.d("fragmentCycle - Series", "onResume")
-    }
+            adapter = MediaAdapter(it) { media ->
+                val transaction = childFragmentManager.beginTransaction()
 
-    override fun onPause() {
-        super.onPause()
+                val dialog = MediaDialogFragment()
+                dialog.media = media
 
-        Log.d("fragmentCycle - Series", "onPause")
-    }
+                dialog.show(transaction, "MediaDialog")
+            }
 
-    override fun onStop() {
-        super.onStop()
-
-        Log.d("fragmentCycle - Series", "onStop")
+            recyclerView.adapter = adapter
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
