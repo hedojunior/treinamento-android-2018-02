@@ -6,36 +6,52 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import br.com.cwi.cwiflix.BuildConfig
 import br.com.cwi.cwiflix.R
+import br.com.cwi.cwiflix.adapters.MediaAdapter
+import br.com.cwi.cwiflix.api.MovieDatabaseService
+import br.com.cwi.cwiflix.api.models.MediaResult
+import kotlinx.android.synthetic.main.fragment_movies.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class MoviesFragment: Fragment() {
+class MoviesFragment : Fragment(), Callback<MediaResult> {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    lateinit var adapter: MediaAdapter
+
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+
+        MovieDatabaseService.service.getPopularMovies(BuildConfig.API_KEY).enqueue(this)
+
         return inflater.inflate(R.layout.fragment_movies, container, false)
     }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        Log.d("fragmentCycle - Movies", "onCreate")
+    override fun onFailure(call: Call<MediaResult>, t: Throwable) {
+        Log.e("MoviesFragment", t.localizedMessage, t);
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        Log.d("fragmentCycle - Movies", "onResume")
+    override fun onResponse(call: Call<MediaResult>, response: Response<MediaResult>) {
+        response.body()?.results?.let {
+            adapter = MediaAdapter(it)
+            recyclerView.adapter = adapter
+        }
     }
 
-    override fun onPause() {
-        super.onPause()
-
-        Log.d("fragmentCycle - Movies", "onPause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-
-        Log.d("fragmentCycle - Movies", "onStop")
-    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
