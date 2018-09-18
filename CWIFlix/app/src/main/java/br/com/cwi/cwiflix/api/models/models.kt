@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName
  * @author hedo
  */
 
-
 class MediaResult(val results: List<Media>)
 
 class PersonResult(val results: List<ListPerson>)
