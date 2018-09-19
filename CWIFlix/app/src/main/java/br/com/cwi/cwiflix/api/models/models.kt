@@ -1,6 +1,8 @@
 package br.com.cwi.cwiflix.api.models
 
+import android.os.Bundle
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * @author hedo
@@ -25,3 +27,34 @@ class ListPerson(
         val id: Int?,
         val name: String?,
         @SerializedName("profile_path") val image: String?)
+
+class Movie: Serializable {
+
+    @SerializedName("backdrop_path")
+    var backdropPath: String? = null
+
+    @SerializedName("original_language")
+    var originalLanguage: String? = null
+
+    @SerializedName("original_title")
+    var originalTitle: String? = null
+
+    @SerializedName("tagline")
+    var tagline: String? = null
+
+    @SerializedName("overview")
+    var overview: String? = null
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
