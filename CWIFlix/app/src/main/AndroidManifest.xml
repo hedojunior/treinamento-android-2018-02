@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,9 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".MovieActivity"></activity>
+        <activity android:name=".activities.MovieActivity" />
+        <activity android:name=".activities.PersonActivity" />
+        <activity android:name=".activities.SeriesActivity"></activity>
     </application>
 
 </manifest>

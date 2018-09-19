@@ -2,15 +2,12 @@ package br.com.cwi.cwiflix.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import br.com.cwi.cwiflix.BuildConfig
-import br.com.cwi.cwiflix.MovieActivity
+import br.com.cwi.cwiflix.activities.MovieActivity
 import br.com.cwi.cwiflix.R
 import br.com.cwi.cwiflix.adapters.MediaAdapter
 import br.com.cwi.cwiflix.api.MovieDatabaseService

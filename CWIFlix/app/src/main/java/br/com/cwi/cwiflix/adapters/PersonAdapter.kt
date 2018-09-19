@@ -8,13 +8,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import br.com.cwi.cwiflix.R
 import br.com.cwi.cwiflix.api.models.ListPerson
+import br.com.cwi.cwiflix.api.models.Person
 import br.com.cwi.cwiflix.utils.ImageURLProvider
 import com.squareup.picasso.Picasso
 
 /**
  * @author hedo
  */
-class PersonAdapter(private val items: List<ListPerson>) :
+class PersonAdapter(private val items: List<ListPerson>, val onClick: (person: ListPerson) -> Unit) :
         RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,6 +39,10 @@ class PersonAdapter(private val items: List<ListPerson>) :
         }
 
         holder.personNameTextView.text = item.name
+
+        holder.itemView.setOnClickListener {
+            onClick(item)
+        }
     }
 
 
