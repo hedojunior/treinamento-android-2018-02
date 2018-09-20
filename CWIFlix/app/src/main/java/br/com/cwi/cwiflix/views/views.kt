@@ -9,15 +9,17 @@ import br.com.cwi.cwiflix.api.models.Person
  */
 
 interface MediaView<T : Media> {
-    fun onResponse(list: List<Media>)
+    fun onResponse(list: ArrayList<Media>, isFirstFetch: Boolean)
     fun onFailure(throwable: Throwable)
     fun onDetailResponse(media: T)
     fun onDetailFailure(throwable: Throwable)
+    fun onLastPageReached()
 }
 
 interface ActorsView {
-    fun onActorsRetrieved(actors: List<ListPerson>)
+    fun onActorsRetrieved(actors: ArrayList<ListPerson>, isFirstFetch: Boolean)
     fun onActorsRetrieveFailure(throwable: Throwable)
     fun onDetailResponse(person: Person)
     fun onDetailFailure(throwable: Throwable)
+    fun onLastPageReached()
 }

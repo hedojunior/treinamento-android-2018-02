@@ -1,6 +1,5 @@
 package br.com.cwi.cwiflix.api.models
 
-import android.os.Bundle
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
@@ -8,9 +7,21 @@ import java.io.Serializable
  * @author hedo
  */
 
-class MediaResult(val results: List<Media>)
+open class PaginatedResult(val page: Int,
+                           @SerializedName("total_results") val totalResults: Int,
+                           @SerializedName("total_pages") val totalPages: Int)
 
-class PersonResult(val results: List<ListPerson>)
+class MediaResult(val results: ArrayList<Media>,
+                  page: Int,
+                  totalResults: Int,
+                  totalPages: Int)
+    : PaginatedResult(page, totalResults, totalPages)
+
+class PersonResult(val results: ArrayList<ListPerson>,
+                   page: Int,
+                   totalResults: Int,
+                   totalPages: Int)
+    : PaginatedResult(page, totalResults, totalPages)
 
 open class Media(
         val id: Int?,

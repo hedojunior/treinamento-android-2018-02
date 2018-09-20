@@ -8,7 +8,6 @@ import br.com.cwi.cwiflix.utils.ImageURLProvider
 import br.com.cwi.cwiflix.utils.loadImage
 import kotlinx.android.synthetic.main.activity_person.*
 
-
 class PersonActivity : AppCompatActivity() {
 
     private lateinit var person: Person

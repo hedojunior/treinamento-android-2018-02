@@ -15,9 +15,11 @@ import kotlinx.android.synthetic.main.view_person.view.*
 /**
  * @author hedo
  */
-class PersonAdapter(private val items: List<ListPerson>,
+class PersonAdapter(private val items: ArrayList<ListPerson>,
                     private val onClick: (person: ListPerson) -> Unit) :
         RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
+
+    private var lastItemPosition: Int = items.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         LayoutInflater.from(parent.context).run {
@@ -39,6 +41,12 @@ class PersonAdapter(private val items: List<ListPerson>,
                 onClick(this)
             }
         }
+    }
+
+    fun addPeople(list: List<ListPerson>) {
+        items.addAll(list)
+        notifyItemRangeInserted(lastItemPosition, list.size)
+        lastItemPosition = items.size
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

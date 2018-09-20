@@ -15,8 +15,11 @@ import kotlinx.android.synthetic.main.view_media.view.*
 /**
  * @author hedo
  */
-class MediaAdapter(private val items: List<Media>, private val onClick: (media: Media) -> Unit)
+class MediaAdapter(private val items: ArrayList<Media>,
+                   private val onClick: (media: Media) -> Unit)
     : RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
+
+    private var lastItemPosition: Int = items.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -36,6 +39,13 @@ class MediaAdapter(private val items: List<Media>, private val onClick: (media: 
     }
 
     override fun getItemCount() = items.size
+
+    fun addItems(list: List<Media>) {
+
+        items.addAll(list)
+        notifyItemRangeInserted(lastItemPosition, list.size)
+        lastItemPosition = items.size
+    }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val posterImageButton: ImageButton = itemView.posterImageButton

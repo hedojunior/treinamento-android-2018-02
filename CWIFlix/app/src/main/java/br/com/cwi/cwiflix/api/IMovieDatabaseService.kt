@@ -12,22 +12,22 @@ import retrofit2.http.Query
 interface IMovieDatabaseService {
 
     @GET("movie/popular")
-    fun getPopularMovies(): Call<MediaResult>
+    fun getPopularMovies(@Query("page") page: Int): Call<MediaResult>
 
     @GET("tv/popular")
-    fun getPopularTVShows(): Call<MediaResult>
+    fun getPopularTVShows(@Query("page") page: Int): Call<MediaResult>
 
     @GET("person/popular")
-    fun getPopularPeople(): Call<PersonResult>
+    fun getPopularPeople(@Query("page") page: Int): Call<PersonResult>
 
     @GET("movie/{movie_id}")
-    fun getMovieDetail(@Path("movie_id") id: Int) : Call<Movie>
+    fun getMovieDetail(@Path("movie_id") id: Int): Call<Movie>
 
     @GET("person/{person_id}")
-    fun getPersonDetail(@Path("person_id") id: Int) : Call<Person>
+    fun getPersonDetail(@Path("person_id") id: Int): Call<Person>
 
     @GET("tv/{tv_id}")
-    fun getSeriesDetail(@Path("tv_id") id: Int) : Call<Series>
+    fun getSeriesDetail(@Path("tv_id") id: Int): Call<Series>
 }
 
 

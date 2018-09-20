@@ -10,13 +10,12 @@ import retrofit2.Response
 /**
  * @author hedo
  */
-class MediaPresenter<T : Media>(val view: MediaView<T>, private val mediaType: MediaType) : Callback<MediaResult> {
+class MediaPresenter<T : Media>(val view: MediaView<T>, private val mediaType: MediaType, private var page: Int) : Callback<MediaResult> {
+
+    private var lastPage: Int = 0
 
     fun getMediaList() {
-        when (mediaType) {
-            MediaType.MOVIE -> MovieDatabaseService.service.getPopularMovies().enqueue(this)
-            MediaType.TV_SHOW -> MovieDatabaseService.service.getPopularTVShows().enqueue(this)
-        }
+        requestMedia()
     }
 
     fun getMediaDetail(id: Int) {
@@ -42,12 +41,29 @@ class MediaPresenter<T : Media>(val view: MediaView<T>, private val mediaType: M
     }
 
     override fun onResponse(call: Call<MediaResult>?, response: Response<MediaResult>?) {
-        response?.body()?.results?.let {
-            view.onResponse(it)
+        response?.body()?.let {
+            lastPage = 4 //it.totalPages
+            view.onResponse(it.results, page == 1)
         }
     }
 
     override fun onFailure(call: Call<MediaResult>?, t: Throwable?) {
         t?.run { view.onFailure(this) }
+    }
+
+    fun onLoadMoreMedia() {
+        page++
+        if (page <= lastPage) {
+            requestMedia()
+        } else {
+            view.onLastPageReached()
+        }
+    }
+
+    private fun requestMedia() {
+        when (mediaType) {
+            MediaType.MOVIE -> MovieDatabaseService.service.getPopularMovies(page).enqueue(this)
+            MediaType.TV_SHOW -> MovieDatabaseService.service.getPopularTVShows(page).enqueue(this)
+        }
     }
 }

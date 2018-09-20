@@ -6,9 +6,7 @@ import br.com.cwi.cwiflix.R
 import br.com.cwi.cwiflix.api.models.Movie
 import br.com.cwi.cwiflix.utils.ImageURLProvider
 import br.com.cwi.cwiflix.utils.loadImage
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_movie.*
-
 
 class MovieActivity : AppCompatActivity() {
     private lateinit var movie: Movie

@@ -11,15 +11,27 @@ import retrofit2.Response
 /**
  * @author hedo
  */
-class ActorsPresenter(private val view: ActorsView) : Callback<PersonResult> {
+class ActorsPresenter(private val view: ActorsView, private var page: Int) : Callback<PersonResult> {
+
+    private var lastPage: Int = 0
 
     fun getActorsList() {
-        MovieDatabaseService.service.getPopularPeople().enqueue(this)
+        MovieDatabaseService.service.getPopularPeople(page).enqueue(this)
+    }
+
+    fun loadNextPage() {
+        page++
+        if (page <= lastPage) {
+            getActorsList()
+        } else {
+            view.onLastPageReached()
+        }
     }
 
     override fun onResponse(call: Call<PersonResult>, response: Response<PersonResult>) {
-        response.body()?.results?.let {
-            view.onActorsRetrieved(it)
+        response.body()?.run {
+            lastPage = totalPages
+            view.onActorsRetrieved(results, page == 1)
         }
     }
 

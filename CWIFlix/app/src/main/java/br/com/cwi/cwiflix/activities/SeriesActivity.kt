@@ -8,7 +8,6 @@ import br.com.cwi.cwiflix.utils.ImageURLProvider
 import br.com.cwi.cwiflix.utils.loadImage
 import kotlinx.android.synthetic.main.activity_series.*
 
-
 class SeriesActivity : AppCompatActivity() {
     private lateinit var series: Series
 

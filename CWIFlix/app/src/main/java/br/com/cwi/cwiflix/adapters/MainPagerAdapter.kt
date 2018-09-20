@@ -12,15 +12,15 @@ import br.com.cwi.cwiflix.fragments.SeriesFragment
 class MainPagerAdapter(fm: FragmentManager, val context: Context)
     : FragmentPagerAdapter(fm) {
 
-    val moviesFragment: MoviesFragment by lazy {
+    private val moviesFragment: MoviesFragment by lazy {
         MoviesFragment()
     }
 
-    val seriesFragment: SeriesFragment by lazy {
+    private val seriesFragment: SeriesFragment by lazy {
         SeriesFragment()
     }
 
-    val actorsFragment: ActorsFragment by lazy {
+    private val actorsFragment: ActorsFragment by lazy {
         ActorsFragment()
     }
 
@@ -32,9 +32,7 @@ class MainPagerAdapter(fm: FragmentManager, val context: Context)
         }
     }
 
-    override fun getCount(): Int {
-        return 3
-    }
+    override fun getCount() = 3
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
@@ -43,6 +41,4 @@ class MainPagerAdapter(fm: FragmentManager, val context: Context)
             else -> context.getString(R.string.estrelas)
         }
     }
-
-
 }
