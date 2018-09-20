@@ -12,46 +12,52 @@ class MediaResult(val results: List<Media>)
 
 class PersonResult(val results: List<ListPerson>)
 
-class Media(
+open class Media(
         val id: Int?,
         @SerializedName("title",
                 alternate = ["name"]) val title: String,
         @SerializedName("release_date",
                 alternate = ["first_air_date"]) val releaseDate: String,
         @SerializedName("vote_average") val voteAverage: Double,
-        @SerializedName("poster_path") val image: String,
+        @SerializedName("poster_path") val image: String?,
         val overview: String
-)
+) : Serializable
 
 class ListPerson(
-        val id: Int?,
-        val name: String?,
+        val id: Int,
+        val name: String,
         @SerializedName("profile_path") val image: String?)
 
 
 class Movie(
-        val overview: String?,
-        @SerializedName("backdrop_path") val backdropPath: String?,
         @SerializedName("original_language") val originalLanguage: String?,
         @SerializedName("original_title") val originalTitle: String?,
-        @SerializedName("tagline") val tagline: String?
-): Serializable
+        @SerializedName("tagline") val tagline: String?,
+        id: Int?,
+        title: String,
+        releaseDate: String,
+        voteAverage: Double,
+        image: String?,
+        overview: String
+) : Serializable, Media(id, title, releaseDate, voteAverage, image, overview)
 
 class Series(
-        val overview: String?,
-        @SerializedName("backdrop_path") val backdropPath: String?,
         @SerializedName("original_language") val originalLanguage: String?,
-        @SerializedName("name") val name: String?,
-        @SerializedName("tagline") val tagline: String?
-): Serializable
+        @SerializedName("tagline") val tagline: String?,
+        id: Int?,
+        title: String,
+        releaseDate: String,
+        voteAverage: Double,
+        image: String?,
+        overview: String
+) : Serializable, Media(id, title, releaseDate, voteAverage, image, overview)
 
 class Person(
         @SerializedName("profile_path") val image: String?,
-        val name: String?,
-        val biography: String?,
-        @SerializedName("place_of_birth") val placeOfBirth: String?,
-        val birthday: String?
-): Serializable
+        val name: String,
+        val biography: String,
+        @SerializedName("place_of_birth") val placeOfBirth: String,
+        val birthday: String) : Serializable
 
 
 

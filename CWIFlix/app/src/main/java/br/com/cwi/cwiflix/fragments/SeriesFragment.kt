@@ -15,61 +15,60 @@ import br.com.cwi.cwiflix.activities.MovieActivity
 import br.com.cwi.cwiflix.activities.SeriesActivity
 import br.com.cwi.cwiflix.adapters.MediaAdapter
 import br.com.cwi.cwiflix.api.MovieDatabaseService
-import br.com.cwi.cwiflix.api.models.MediaResult
-import br.com.cwi.cwiflix.api.models.Movie
-import br.com.cwi.cwiflix.api.models.Series
+import br.com.cwi.cwiflix.api.models.*
+import br.com.cwi.cwiflix.presenters.MediaPresenter
+import br.com.cwi.cwiflix.views.MediaView
 import kotlinx.android.synthetic.main.fragment_media.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class SeriesFragment : Fragment(), Callback<MediaResult> {
-    lateinit var adapter: MediaAdapter
+class SeriesFragment : Fragment(), MediaView<Series> {
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    companion object {
+        private const val TAG = "CWIFlix.SeriesFragment"
+    }
 
-        MovieDatabaseService.service.getPopularTVShows().enqueue(this)
+    private lateinit var adapter: MediaAdapter
+
+    private val presenter: MediaPresenter<Series> by lazy {
+        MediaPresenter(this, MediaType.TV_SHOW)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        presenter.getMediaList()
 
         return inflater.inflate(R.layout.fragment_media, container, false)
     }
 
-    override fun onFailure(call: Call<MediaResult>, t: Throwable) {
-        Log.e("SeriesFragment", t.localizedMessage, t);
+    override fun onResponse(list: List<Media>) {
+        adapter = MediaAdapter(list) { media ->
+            media.id?.let {
+                presenter.getMediaDetail(it)
+            }
+        }
+
+        recyclerView.adapter = adapter
     }
 
-    override fun onResponse(call: Call<MediaResult>, response: Response<MediaResult>) {
-        response.body()?.results?.let {
-
-            adapter = MediaAdapter(it) { media ->
-                media.id?.let {
-                    getSeriesDetail(media.id)
-                }
-            }
-
-            recyclerView.adapter = adapter
+    override fun onFailure(throwable: Throwable) {
+        throwable.run {
+            Log.e(TAG, "SeriesFragment.onFailure: $localizedMessage", this)
         }
     }
 
-    private fun getSeriesDetail(id: Int) {
-        val request = MovieDatabaseService.service.getSeriesDetail(id)
+    override fun onDetailResponse(media: Series) {
+        val intent = Intent(activity, SeriesActivity::class.java)
+        intent.putExtra("series", media)
 
-        request.enqueue(object : Callback<Series> {
+        activity?.startActivity(intent)
+    }
 
-            override fun onResponse(call: Call<Series>?, response: Response<Series>?) {
-
-                val intent = Intent(activity, SeriesActivity::class.java)
-                intent.putExtra("series", response?.body())
-
-                activity?.startActivity(intent)
-            }
-
-            override fun onFailure(call: Call<Series>?, t: Throwable?) {
-                Log.e("rsponse", t.toString())
-            }
-        })
+    override fun onDetailFailure(throwable: Throwable) {
+        throwable.run {
+            Log.e(TAG, "SeriesFragment.onDetailFailure: $localizedMessage", this)
+        }
     }
 }
 

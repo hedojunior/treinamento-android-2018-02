@@ -5,13 +5,13 @@ import android.os.Bundle
 import br.com.cwi.cwiflix.R
 import br.com.cwi.cwiflix.api.models.Movie
 import br.com.cwi.cwiflix.utils.ImageURLProvider
+import br.com.cwi.cwiflix.utils.loadImage
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_movie.*
 
 
 class MovieActivity : AppCompatActivity() {
-
-    private var movie: Movie? = null
+    private lateinit var movie: Movie
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,13 +19,14 @@ class MovieActivity : AppCompatActivity() {
 
         movie = intent.getSerializableExtra("movie") as Movie
 
-        movie?.let {
-            Picasso.with(this).load(ImageURLProvider.large(it.backdropPath!!)).into(posterImageView)
-            originalTitleTextView.text = it.originalTitle
-            overviewTitleTextView.text = it.overview
-            taglineTitleTextView.text = it.tagline
-            originalLanguageTitleTextView.text = it.originalLanguage
-        }
+        movie.run {
+            posterImageView.loadImage(ImageURLProvider.large(image))
+            originalTitleTextView.text = title
+            overviewTitleTextView.text = overview
+            taglineTitleTextView.text = tagline
+            originalLanguageTitleTextView.text = originalLanguage
 
+            this@MovieActivity.title = title
+        }
     }
 }

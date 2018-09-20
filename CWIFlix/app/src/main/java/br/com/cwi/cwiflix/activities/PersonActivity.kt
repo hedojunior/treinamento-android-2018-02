@@ -5,13 +5,13 @@ import android.os.Bundle
 import br.com.cwi.cwiflix.R
 import br.com.cwi.cwiflix.api.models.Person
 import br.com.cwi.cwiflix.utils.ImageURLProvider
-import com.squareup.picasso.Picasso
+import br.com.cwi.cwiflix.utils.loadImage
 import kotlinx.android.synthetic.main.activity_person.*
 
 
 class PersonActivity : AppCompatActivity() {
 
-    var person: Person? = null
+    private lateinit var person: Person
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,12 +19,14 @@ class PersonActivity : AppCompatActivity() {
 
         person = intent.getSerializableExtra("person") as Person
 
-        person?.let {
-            Picasso.with(this).load(ImageURLProvider.large(it.image!!)).into(personImageView)
-            nameTextView.text = it.name
-            placeOfBirthTextView.text = it.placeOfBirth
-            biographyTextView.text = it.biography
-            birthDayTextView.text = it.birthday
+        person.run {
+            personImageView.loadImage(ImageURLProvider.large(image))
+            nameTextView.text = name
+            placeOfBirthTextView.text = placeOfBirth
+            biographyTextView.text = biography
+            birthDayTextView.text = birthday
+
+            this@PersonActivity.title = name
         }
     }
 }

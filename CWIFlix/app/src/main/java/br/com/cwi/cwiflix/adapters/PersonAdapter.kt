@@ -8,14 +8,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import br.com.cwi.cwiflix.R
 import br.com.cwi.cwiflix.api.models.ListPerson
-import br.com.cwi.cwiflix.api.models.Person
 import br.com.cwi.cwiflix.utils.ImageURLProvider
-import com.squareup.picasso.Picasso
+import br.com.cwi.cwiflix.utils.loadImage
+import kotlinx.android.synthetic.main.view_person.view.*
 
 /**
  * @author hedo
  */
-class PersonAdapter(private val items: List<ListPerson>, val onClick: (person: ListPerson) -> Unit) :
+class PersonAdapter(private val items: List<ListPerson>,
+                    private val onClick: (person: ListPerson) -> Unit) :
         RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,30 +31,18 @@ class PersonAdapter(private val items: List<ListPerson>, val onClick: (person: L
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = items[position]
+        items[position].run {
+            holder.photoImageView.loadImage(ImageURLProvider.small(image))
+            holder.personNameTextView.text = name
 
-        item.image?.let {
-            Picasso.with(holder.itemView.context)
-                    .load(ImageURLProvider.small(it))
-                    .into(holder.photoImageView)
-        }
-
-        holder.personNameTextView.text = item.name
-
-        holder.itemView.setOnClickListener {
-            onClick(item)
+            holder.itemView.setOnClickListener {
+                onClick(this)
+            }
         }
     }
 
-
-    class ViewHolder(itemView: View) :
-            RecyclerView.ViewHolder(itemView) {
-
-        val photoImageView: ImageView =
-                itemView.findViewById(R.id.photoImageView)
-
-        val personNameTextView: TextView =
-                itemView.findViewById(R.id.nameTextView)
-
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val photoImageView: ImageView = itemView.photoImageView
+        val personNameTextView: TextView = itemView.nameTextView
     }
 }

@@ -4,16 +4,18 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import br.com.cwi.cwiflix.R
 import br.com.cwi.cwiflix.api.models.Media
 import br.com.cwi.cwiflix.utils.ImageURLProvider
+import br.com.cwi.cwiflix.utils.loadImage
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.view_media.view.*
 
 /**
  * @author hedo
  */
-class MediaAdapter(val items: List<Media>, val onClick: (media: Media) -> Unit)
+class MediaAdapter(private val items: List<Media>, private val onClick: (media: Media) -> Unit)
     : RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,25 +26,19 @@ class MediaAdapter(val items: List<Media>, val onClick: (media: Media) -> Unit)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = items[position]
+        items[position].run {
+            image?.let {
+                holder.posterImageButton.loadImage(ImageURLProvider.small(it))
+            }
 
-        Picasso
-                .with(holder.itemView.context)
-                .load(ImageURLProvider.small(item.image))
-                .into(holder.posterImageButton)
-
-        holder.posterImageButton.setOnClickListener {
-            onClick(item)
+            holder.posterImageButton.setOnClickListener { onClick(this) }
         }
     }
 
     override fun getItemCount() = items.size
 
-
-    class ViewHolder(itemView: View)
-        : RecyclerView.ViewHolder(itemView) {
-
-        val posterImageButton = itemView.posterImageButton
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val posterImageButton: ImageButton = itemView.posterImageButton
     }
 }
 

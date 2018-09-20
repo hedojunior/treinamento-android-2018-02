@@ -1,4 +1,4 @@
-package br.com.cwi.cwiflix
+package br.com.cwi.cwiflix.utils
 
 import android.content.SharedPreferences
 

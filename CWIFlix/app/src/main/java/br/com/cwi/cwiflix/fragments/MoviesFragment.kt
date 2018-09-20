@@ -10,49 +10,58 @@ import android.view.ViewGroup
 import br.com.cwi.cwiflix.activities.MovieActivity
 import br.com.cwi.cwiflix.R
 import br.com.cwi.cwiflix.adapters.MediaAdapter
-import br.com.cwi.cwiflix.api.MovieDatabaseService
 import br.com.cwi.cwiflix.api.models.Media
-import br.com.cwi.cwiflix.api.models.MediaResult
+import br.com.cwi.cwiflix.api.models.MediaType
 import br.com.cwi.cwiflix.api.models.Movie
-import br.com.cwi.cwiflix.presenters.MoviesPresenter
+import br.com.cwi.cwiflix.presenters.MediaPresenter
+import br.com.cwi.cwiflix.views.MediaView
+
 import kotlinx.android.synthetic.main.fragment_media.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class MoviesFragment : Fragment(), MoviesView {
+class MoviesFragment : Fragment(), MediaView<Movie> {
 
-    lateinit var adapter: MediaAdapter
-
-    val presenter: MoviesPresenter by lazy {
-        MoviesPresenter(this)
+    companion object {
+        private const val TAG = "CWIFlix.MoviesFragment"
     }
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    private lateinit var adapter: MediaAdapter
 
-        presenter.onCreaView()
+    private val presenter: MediaPresenter<Movie> by lazy {
+        MediaPresenter(this, MediaType.MOVIE)
+    }
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        presenter.getMediaList()
         return inflater.inflate(R.layout.fragment_media, container, false)
     }
-
 
     override fun onResponse(list: List<Media>) {
         adapter = MediaAdapter(list) { media ->
             media.id?.let {
-                presenter.getMovieDetail(media.id)
+                presenter.getMediaDetail(it)
             }
         }
 
         recyclerView.adapter = adapter
     }
 
-    override fun goToDetail(movie: Movie) {
+    override fun onFailure(throwable: Throwable) {
+        throwable.run {
+            Log.e(TAG, "MoviesFragment.onFailure: $localizedMessage", this)
+        }
+    }
+
+    override fun onDetailResponse(media: Movie) {
         val intent = Intent(activity, MovieActivity::class.java)
-        intent.putExtra("movie", movie)
+        intent.putExtra("movie", media)
 
         activity?.startActivity(intent)
+    }
+
+    override fun onDetailFailure(throwable: Throwable) {
+        throwable.run {
+            Log.e(TAG, "MoviesFragment.onDetailFailure: $localizedMessage", this)
+        }
     }
 }
 

@@ -5,13 +5,12 @@ import android.os.Bundle
 import br.com.cwi.cwiflix.R
 import br.com.cwi.cwiflix.api.models.Series
 import br.com.cwi.cwiflix.utils.ImageURLProvider
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_movie.*
+import br.com.cwi.cwiflix.utils.loadImage
+import kotlinx.android.synthetic.main.activity_series.*
 
 
 class SeriesActivity : AppCompatActivity() {
-
-    private var series: Series? = null
+    private lateinit var series: Series
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,13 +18,14 @@ class SeriesActivity : AppCompatActivity() {
 
         series = intent.getSerializableExtra("series") as Series
 
-        series?.let {
-            Picasso.with(this).load(ImageURLProvider.large(it.backdropPath!!)).into(posterImageView)
-            originalTitleTextView.text = it.name
-            overviewTitleTextView.text = it.overview
-            taglineTitleTextView.text = it.tagline
-            originalLanguageTitleTextView.text = it.originalLanguage
-        }
+        series.run {
+            posterImageView.loadImage(ImageURLProvider.large(image))
+            originalTitleTextView.text = title
+            overviewTitleTextView.text = overview
+            taglineTitleTextView.text = tagline
+            originalLanguageTitleTextView.text = originalLanguage
 
+            this@SeriesActivity.title = title
+        }
     }
 }

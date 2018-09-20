@@ -2,6 +2,7 @@ package br.com.cwi.cwiflix
 
 import android.app.Application
 import android.content.Context
+import br.com.cwi.cwiflix.utils.SharedPreferencesService
 
 /**
  * @author hedo

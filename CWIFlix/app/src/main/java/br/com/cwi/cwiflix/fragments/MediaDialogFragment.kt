@@ -1,13 +1,12 @@
 package br.com.cwi.cwiflix.fragments
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.cwi.cwiflix.R
-import br.com.cwi.cwiflix.SharedPreferencesService
+import br.com.cwi.cwiflix.utils.SharedPreferencesService
 import br.com.cwi.cwiflix.api.models.Media
 import kotlinx.android.synthetic.main.dialog_media.*
 
