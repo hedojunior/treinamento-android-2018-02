@@ -11,6 +11,7 @@ import br.com.cwi.cwiflix.services.models.Favorite
 import br.com.cwi.cwiflix.utils.ImageURLProvider
 import br.com.cwi.cwiflix.utils.loadImage
 import kotlinx.android.synthetic.main.activity_movie.*
+import kotlinx.android.synthetic.main.fab_star.*
 
 class MovieActivity : AppCompatActivity() {
     private lateinit var movie: Movie
@@ -32,7 +33,7 @@ class MovieActivity : AppCompatActivity() {
 
             changeButtonState(FavoritesService.isFavorite(id!!, MediaType.MOVIE))
 
-            favoriteFloatingButton.setOnClickListener {
+            starFloatingButton.setOnClickListener {
                 val isFavorite = FavoritesService.isFavorite(id, MediaType.MOVIE)
 
                 if (isFavorite) {
@@ -49,7 +50,7 @@ class MovieActivity : AppCompatActivity() {
 
     private fun changeButtonState(isFavorite: Boolean) {
         val resource = if (isFavorite) R.drawable.ic_star else R.drawable.ic_star_border
-        favoriteFloatingButton.setImageResource(resource)
+        starFloatingButton.setImageResource(resource)
     }
 }
 

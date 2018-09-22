@@ -9,14 +9,15 @@ import br.com.cwi.cwiflix.R
 import br.com.cwi.cwiflix.services.api.models.Media
 import br.com.cwi.cwiflix.utils.ImageURLProvider
 import br.com.cwi.cwiflix.utils.loadImage
-import kotlinx.android.synthetic.main.view_media.view.*
+
+import br.com.cwi.cwiflix.adapters.PosterViewHolder as ViewHolder
 
 /**
  * @author hedo
  */
 class MediaAdapter(private val items: ArrayList<Media>,
                    private val onClick: (media: Media) -> Unit)
-    : RecyclerView.Adapter<MediaAdapter.ViewHolder>() {
+    : RecyclerView.Adapter<ViewHolder>() {
 
     private var lastItemPosition: Int = items.size
 
@@ -30,7 +31,7 @@ class MediaAdapter(private val items: ArrayList<Media>,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         items[position].run {
             image?.let {
-                holder.posterImageButton.loadImage(ImageURLProvider.small(it))
+                holder.posterImageButton.loadImage(ImageURLProvider.medium(it))
             }
 
             holder.posterImageButton.setOnClickListener { onClick(this) }
@@ -44,10 +45,6 @@ class MediaAdapter(private val items: ArrayList<Media>,
         items.addAll(list)
         notifyItemRangeInserted(lastItemPosition, list.size)
         lastItemPosition = items.size
-    }
-
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val posterImageButton: ImageButton = itemView.posterImageButton
     }
 }
 

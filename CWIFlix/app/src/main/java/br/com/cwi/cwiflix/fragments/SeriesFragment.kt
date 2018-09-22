@@ -17,6 +17,7 @@ import br.com.cwi.cwiflix.adapters.MediaAdapter
 import br.com.cwi.cwiflix.services.api.models.*
 import br.com.cwi.cwiflix.listeners.EndlessRecyclerViewScrollListener
 import br.com.cwi.cwiflix.presenters.MediaPresenter
+import br.com.cwi.cwiflix.utils.GridSpacingItemDecoration
 import br.com.cwi.cwiflix.views.MediaView
 import kotlinx.android.synthetic.main.fragment_media.*
 import kotlinx.android.synthetic.main.fragment_media.view.*
@@ -43,6 +44,8 @@ class SeriesFragment : Fragment(), MediaView<Series> {
                 presenter.onLoadMoreMedia()
             }
         })
+
+        view.recyclerView.addItemDecoration(GridSpacingItemDecoration(2, 15, false))
 
         presenter.getMediaList()
 

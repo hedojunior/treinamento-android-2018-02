@@ -1,5 +1,6 @@
 package br.com.cwi.cwiflix.services
 
+import br.com.cwi.cwiflix.listeners.OnFavoritesChangeListener
 import br.com.cwi.cwiflix.services.api.models.MediaType
 import br.com.cwi.cwiflix.services.models.Favorite
 import com.google.firebase.database.*
@@ -12,7 +13,9 @@ object FavoritesService : ChildEventListener {
         FirebaseDatabase.getInstance()
     }
 
-    private val favorites = ArrayList<Favorite>()
+    var listener: OnFavoritesChangeListener? = null
+
+    val favorites = ArrayList<Favorite>()
 
     private lateinit var reference: DatabaseReference
 
@@ -22,8 +25,7 @@ object FavoritesService : ChildEventListener {
         reference.addChildEventListener(this)
     }
 
-    fun isFavorite(mediaId: Int, mediaType: MediaType)
-            = favorites.any { it.mediaId == mediaId && it.mediaType == mediaType }
+    fun isFavorite(mediaId: Int, mediaType: MediaType) = favorites.any { it.mediaId == mediaId && it.mediaType == mediaType }
 
     fun add(favorite: Favorite) {
         val reference = reference.push()
@@ -41,11 +43,15 @@ object FavoritesService : ChildEventListener {
 
         favorite?.run {
             favorites.add(this)
+            listener?.onFavoriteAdded()
         }
     }
 
     override fun onChildRemoved(snapshot: DataSnapshot) {
-        favorites.removeAt(favorites.indexOfFirst { it.id == snapshot.key })
+        val index = favorites.indexOfFirst { it.id == snapshot.key }
+        favorites.removeAt(index)
+
+        listener?.onFavoriteRemoved(index)
     }
 
 

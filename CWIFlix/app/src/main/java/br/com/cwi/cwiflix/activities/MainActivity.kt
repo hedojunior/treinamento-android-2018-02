@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         val fragmentPagerAdapter =
                 MainPagerAdapter(supportFragmentManager, this)
 
-        mainViewPager.offscreenPageLimit = 2
+        mainViewPager.offscreenPageLimit = 3
         mainViewPager.adapter = fragmentPagerAdapter
 
         tabLayout.setupWithViewPager(mainViewPager)
