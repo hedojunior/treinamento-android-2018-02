@@ -23,3 +23,29 @@ interface ActorsView {
     fun onDetailFailure(throwable: Throwable)
     fun onLastPageReached()
 }
+
+interface LoginView {
+    fun onLoginSucceeded()
+    fun onLoginFailed()
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

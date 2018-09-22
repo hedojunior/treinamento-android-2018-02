@@ -1,9 +1,14 @@
 <resources>
-    <string name="app_name">CWI Flix</string>
+    <string name="app_name">CWIFLIX</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="filmes">FILMES</string>
     <string name="series">SÉRIES</string>
     <string name="estrelas">ESTRELAS</string>
+    <string name="email">E-mail</string>
+    <string name="password">Senha</string>
+    <string name="signin">Entrar</string>
+    <string name="create_account"><u>Criar conta</u></string>
+    <string name="background_image_cdesc">Imagem de fundo.</string>
 </resources>
