@@ -3,6 +3,8 @@ package br.com.cwi.cwiflix.views
 import br.com.cwi.cwiflix.api.models.ListPerson
 import br.com.cwi.cwiflix.api.models.Media
 import br.com.cwi.cwiflix.api.models.Person
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.firebase.auth.FirebaseUser
 
 /**
  * @author hedo
@@ -25,7 +27,7 @@ interface ActorsView {
 }
 
 interface LoginView {
-    fun onLoginSucceeded()
+    fun onLoginSucceeded(account: FirebaseUser?)
     fun onLoginFailed()
 }
 
