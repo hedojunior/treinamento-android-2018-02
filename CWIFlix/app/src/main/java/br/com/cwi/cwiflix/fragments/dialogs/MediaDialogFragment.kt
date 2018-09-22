@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.cwi.cwiflix.R
-import br.com.cwi.cwiflix.utils.SharedPreferencesService
-import br.com.cwi.cwiflix.api.models.Media
+import br.com.cwi.cwiflix.services.SharedPreferencesService
+import br.com.cwi.cwiflix.services.api.models.Media
 import kotlinx.android.synthetic.main.dialog_media.*
 
 import kotlinx.android.synthetic.main.dialog_media.view.*

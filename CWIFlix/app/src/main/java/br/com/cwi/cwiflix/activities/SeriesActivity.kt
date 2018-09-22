@@ -3,7 +3,7 @@ package br.com.cwi.cwiflix.activities
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import br.com.cwi.cwiflix.R
-import br.com.cwi.cwiflix.api.models.Series
+import br.com.cwi.cwiflix.services.api.models.Series
 import br.com.cwi.cwiflix.utils.ImageURLProvider
 import br.com.cwi.cwiflix.utils.loadImage
 import kotlinx.android.synthetic.main.activity_series.*

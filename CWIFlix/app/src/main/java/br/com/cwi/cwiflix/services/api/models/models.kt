@@ -1,4 +1,4 @@
-package br.com.cwi.cwiflix.api.models
+package br.com.cwi.cwiflix.services.api.models
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

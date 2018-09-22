@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import br.com.cwi.cwiflix.R
-import br.com.cwi.cwiflix.api.models.ListPerson
+import br.com.cwi.cwiflix.services.api.models.ListPerson
 import br.com.cwi.cwiflix.utils.ImageURLProvider
 import br.com.cwi.cwiflix.utils.loadImage
 import kotlinx.android.synthetic.main.view_person.view.*

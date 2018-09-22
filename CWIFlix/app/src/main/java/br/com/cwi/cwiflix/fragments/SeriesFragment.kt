@@ -11,21 +11,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import br.com.cwi.cwiflix.BuildConfig
 import br.com.cwi.cwiflix.R
-import br.com.cwi.cwiflix.activities.MovieActivity
 import br.com.cwi.cwiflix.activities.SeriesActivity
 import br.com.cwi.cwiflix.adapters.MediaAdapter
-import br.com.cwi.cwiflix.api.MovieDatabaseService
-import br.com.cwi.cwiflix.api.models.*
+import br.com.cwi.cwiflix.services.api.models.*
 import br.com.cwi.cwiflix.listeners.EndlessRecyclerViewScrollListener
 import br.com.cwi.cwiflix.presenters.MediaPresenter
 import br.com.cwi.cwiflix.views.MediaView
 import kotlinx.android.synthetic.main.fragment_media.*
 import kotlinx.android.synthetic.main.fragment_media.view.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class SeriesFragment : Fragment(), MediaView<Series> {

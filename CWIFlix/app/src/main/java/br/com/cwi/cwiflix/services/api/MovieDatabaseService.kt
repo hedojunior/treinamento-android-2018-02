@@ -1,4 +1,4 @@
-package br.com.cwi.cwiflix.api
+package br.com.cwi.cwiflix.services.api
 
 import br.com.cwi.cwiflix.BuildConfig
 import okhttp3.OkHttpClient

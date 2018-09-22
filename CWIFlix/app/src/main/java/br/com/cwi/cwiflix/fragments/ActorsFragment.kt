@@ -15,8 +15,8 @@ import android.widget.Toast
 import br.com.cwi.cwiflix.R
 import br.com.cwi.cwiflix.activities.PersonActivity
 import br.com.cwi.cwiflix.adapters.PersonAdapter
-import br.com.cwi.cwiflix.api.models.ListPerson
-import br.com.cwi.cwiflix.api.models.Person
+import br.com.cwi.cwiflix.services.api.models.ListPerson
+import br.com.cwi.cwiflix.services.api.models.Person
 import br.com.cwi.cwiflix.listeners.EndlessRecyclerViewScrollListener
 import br.com.cwi.cwiflix.presenters.ActorsPresenter
 import br.com.cwi.cwiflix.views.ActorsView

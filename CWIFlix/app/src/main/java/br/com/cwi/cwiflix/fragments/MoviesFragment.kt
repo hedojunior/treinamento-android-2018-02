@@ -13,9 +13,9 @@ import android.widget.Toast
 import br.com.cwi.cwiflix.activities.MovieActivity
 import br.com.cwi.cwiflix.R
 import br.com.cwi.cwiflix.adapters.MediaAdapter
-import br.com.cwi.cwiflix.api.models.Media
-import br.com.cwi.cwiflix.api.models.MediaType
-import br.com.cwi.cwiflix.api.models.Movie
+import br.com.cwi.cwiflix.services.api.models.Media
+import br.com.cwi.cwiflix.services.api.models.MediaType
+import br.com.cwi.cwiflix.services.api.models.Movie
 import br.com.cwi.cwiflix.listeners.EndlessRecyclerViewScrollListener
 import br.com.cwi.cwiflix.presenters.MediaPresenter
 import br.com.cwi.cwiflix.views.MediaView

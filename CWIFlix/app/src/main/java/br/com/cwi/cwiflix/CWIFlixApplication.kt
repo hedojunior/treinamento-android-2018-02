@@ -2,7 +2,7 @@ package br.com.cwi.cwiflix
 
 import android.app.Application
 import android.content.Context
-import br.com.cwi.cwiflix.utils.SharedPreferencesService
+import br.com.cwi.cwiflix.services.SharedPreferencesService
 import br.com.cwi.cwiflix.utils.UserHolder
 import com.google.firebase.auth.FirebaseAuth
 

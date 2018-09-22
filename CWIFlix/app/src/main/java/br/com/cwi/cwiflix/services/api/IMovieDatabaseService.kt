@@ -1,6 +1,6 @@
-package br.com.cwi.cwiflix.api
+package br.com.cwi.cwiflix.services.api
 
-import br.com.cwi.cwiflix.api.models.*
+import br.com.cwi.cwiflix.services.api.models.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

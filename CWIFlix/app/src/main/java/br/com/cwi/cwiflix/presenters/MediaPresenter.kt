@@ -1,7 +1,7 @@
 package br.com.cwi.cwiflix.presenters
 
-import br.com.cwi.cwiflix.api.MovieDatabaseService
-import br.com.cwi.cwiflix.api.models.*
+import br.com.cwi.cwiflix.services.api.MovieDatabaseService
+import br.com.cwi.cwiflix.services.api.models.*
 import br.com.cwi.cwiflix.views.MediaView
 import retrofit2.Call
 import retrofit2.Callback

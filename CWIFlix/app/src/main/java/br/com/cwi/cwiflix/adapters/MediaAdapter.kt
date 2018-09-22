@@ -6,10 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import br.com.cwi.cwiflix.R
-import br.com.cwi.cwiflix.api.models.Media
+import br.com.cwi.cwiflix.services.api.models.Media
 import br.com.cwi.cwiflix.utils.ImageURLProvider
 import br.com.cwi.cwiflix.utils.loadImage
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.view_media.view.*
 
 /**
