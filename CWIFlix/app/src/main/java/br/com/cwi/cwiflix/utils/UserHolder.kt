@@ -1,6 +1,7 @@
 package br.com.cwi.cwiflix.utils
 
 import android.app.Activity
+import android.os.Handler
 import br.com.cwi.cwiflix.services.FavoritesService
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -16,7 +17,9 @@ object UserHolder {
             field = value
 
             field?.uid?.let {
-                FavoritesService.initialize(it)
+                Handler().postDelayed({
+                    FavoritesService.initialize(it)
+                }, 300)
             }
         }
 
