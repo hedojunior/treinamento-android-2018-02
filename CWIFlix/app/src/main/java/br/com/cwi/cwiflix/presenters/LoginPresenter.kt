@@ -35,8 +35,23 @@ class LoginPresenter(private val view: LoginView) {
 
         UserHolder.signInOptions = options
         val client = GoogleSignIn.getClient(activity, options)
-
         activity.startActivityForResult(client.signInIntent, REQUEST_CODE)
+    }
+
+    fun logIn(email: String, password: String) {
+        if (!email.isBlank() && !password.isBlank()) {
+            firebaseAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            UserHolder.user = firebaseAuth.currentUser
+                            view.onLoginSucceeded()
+                        } else {
+                            view.onNormalLoginFailed(it.exception?.localizedMessage)
+                        }
+                    }
+        } else {
+            view.onLoginFailed()
+        }
     }
 
     fun handleLoginResult(data: Intent?) {
@@ -49,7 +64,8 @@ class LoginPresenter(private val view: LoginView) {
             firebaseAuth.signInWithCredential(credential)
                     .addOnCompleteListener {
                         if (task.isSuccessful) {
-                            view.onLoginSucceeded(firebaseAuth.currentUser)
+                            UserHolder.user = firebaseAuth.currentUser
+                            view.onLoginSucceeded()
                         } else {
                             Log.e(TAG, "LoginPresenter.handleLoginResult@signInWithCredential: " + task.exception?.localizedMessage, task.exception)
                             view.onLoginFailed()

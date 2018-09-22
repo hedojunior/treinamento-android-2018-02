@@ -21,7 +21,8 @@ object UserHolder {
         signInOptions?.let {
             val client = GoogleSignIn.getClient(activity, it)
             client.signOut()
-            user = null
         }
+
+        user = null
     }
 }

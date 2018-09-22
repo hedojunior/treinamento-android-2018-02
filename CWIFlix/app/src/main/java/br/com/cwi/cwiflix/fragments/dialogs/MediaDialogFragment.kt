@@ -1,4 +1,4 @@
-package br.com.cwi.cwiflix.fragments
+package br.com.cwi.cwiflix.fragments.dialogs
 
 import android.os.Bundle
 import android.support.v4.app.DialogFragment

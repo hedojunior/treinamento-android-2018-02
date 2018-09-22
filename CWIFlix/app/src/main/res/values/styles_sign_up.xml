@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="FormField">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="FormField.OpenSans">
+        <item name="fontFamily">@font/open_sans</item>
+    </style>
+
+    <style name="FormField.OpenSans.PasswordInput">
+        <item name="android:inputType">numberPassword</item>
+    </style>
+
+</resources>

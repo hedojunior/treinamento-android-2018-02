@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import br.com.cwi.cwiflix.R
+import br.com.cwi.cwiflix.fragments.dialogs.SignUpDialogFragment
 import br.com.cwi.cwiflix.presenters.LoginPresenter
 import br.com.cwi.cwiflix.utils.UserHolder
 import br.com.cwi.cwiflix.views.LoginView
@@ -17,8 +18,14 @@ class LoginActivity : AppCompatActivity(), LoginView {
         LoginPresenter(this)
     }
 
-    override fun onLoginSucceeded(account: FirebaseUser?) {
-        Toast.makeText(this, "Olá, ${account?.displayName}", Toast.LENGTH_SHORT).show()
+    override fun onLoginSucceeded() {
+        var display: String? = ""
+
+        UserHolder.user?.run {
+            display = if (displayName != null) displayName else email
+        }
+
+        Toast.makeText(this, "Olá, $display", Toast.LENGTH_SHORT).show()
         goToMainActivity()
     }
 
@@ -34,12 +41,28 @@ class LoginActivity : AppCompatActivity(), LoginView {
                 Toast.LENGTH_LONG).show()
     }
 
+    override fun onNormalLoginFailed(reason: String?) {
+        Toast.makeText(this, reason, Toast.LENGTH_LONG).show()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         googleSignInButton.setOnClickListener {
             presenter.logIn(this)
+        }
+
+        logInButton.setOnClickListener {
+            presenter.logIn(
+                    emailEditText?.text.toString(),
+                    passwordEditText?.text.toString()
+            )
+        }
+
+        createAccountLink.setOnClickListener {
+            val dialog = SignUpDialogFragment()
+            dialog.show(supportFragmentManager, "SignUpDialog")
         }
 
         if (UserHolder.isLoggedIn()) {

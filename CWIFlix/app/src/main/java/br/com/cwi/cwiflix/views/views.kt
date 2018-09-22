@@ -27,8 +27,14 @@ interface ActorsView {
 }
 
 interface LoginView {
-    fun onLoginSucceeded(account: FirebaseUser?)
+    fun onLoginSucceeded()
     fun onLoginFailed()
+    fun onNormalLoginFailed(reason: String?)
+}
+
+interface SignUpView {
+    fun onSignUpSucceeded()
+    fun onSignUpFailed(reason: String?)
 }
 
 
