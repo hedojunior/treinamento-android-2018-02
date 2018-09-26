@@ -37,15 +37,15 @@ class SeriesFragment : Fragment(), MediaView<Series> {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_media, container, false)
-        val manager = view.recyclerView.layoutManager as GridLayoutManager
+        val manager = view.mediaRecyclerView.layoutManager as GridLayoutManager
 
-        view.recyclerView.addOnScrollListener(object : EndlessRecyclerViewScrollListener(manager) {
+        view.mediaRecyclerView.addOnScrollListener(object : EndlessRecyclerViewScrollListener(manager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
                 presenter.onLoadMoreMedia()
             }
         })
 
-        view.recyclerView.addItemDecoration(GridSpacingItemDecoration(2, 15, false))
+        view.mediaRecyclerView.addItemDecoration(GridSpacingItemDecoration(2, 15, false))
 
         presenter.getMediaList()
 
@@ -60,7 +60,7 @@ class SeriesFragment : Fragment(), MediaView<Series> {
                 }
             }
 
-            recyclerView.adapter = adapter
+            mediaRecyclerView.adapter = adapter
         } else {
             adapter.addItems(list)
         }
@@ -86,7 +86,7 @@ class SeriesFragment : Fragment(), MediaView<Series> {
     }
 
     override fun onLastPageReached() {
-        recyclerView.clearOnScrollListeners()
+        mediaRecyclerView.clearOnScrollListeners()
         Toast.makeText(context, "Não há mais séries para exibir.", Toast.LENGTH_LONG).show()
     }
 }

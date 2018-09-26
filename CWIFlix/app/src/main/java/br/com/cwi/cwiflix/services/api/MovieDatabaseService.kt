@@ -1,5 +1,7 @@
 package br.com.cwi.cwiflix.services.api
 
+import android.support.annotation.NonNull
+import android.support.annotation.VisibleForTesting
 import br.com.cwi.cwiflix.BuildConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -9,9 +11,11 @@ import retrofit2.converter.gson.GsonConverterFactory
  * @author hedo
  */
 object MovieDatabaseService {
-    private const val BASE_URL = "https://api.themoviedb.org/3/"
+    private var baseUrl = "https://api.themoviedb.org/3/"
 
-    val service: IMovieDatabaseService = createService()
+    val service: IMovieDatabaseService by lazy {
+        createService()
+    }
 
     private fun createService(): IMovieDatabaseService {
 
@@ -34,11 +38,16 @@ object MovieDatabaseService {
 
         val retrofit = Retrofit.Builder()
                 .client(client)
-                .baseUrl(BASE_URL)
+                .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
 
         return retrofit.create(IMovieDatabaseService::class.java)
+    }
+
+    @VisibleForTesting
+    fun setBaseUrl(url: String) {
+        baseUrl = url
     }
 }
 

@@ -40,9 +40,9 @@ class ActorsFragment : Fragment(), ActorsView {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_actors, container, false)
-        val manager = view.recyclerView.layoutManager as LinearLayoutManager
+        val manager = view.mediaRecyclerView.layoutManager as LinearLayoutManager
 
-        view.recyclerView.addOnScrollListener(object : EndlessRecyclerViewScrollListener(manager) {
+        view.mediaRecyclerView.addOnScrollListener(object : EndlessRecyclerViewScrollListener(manager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
                 presenter.loadNextPage()
             }
@@ -59,7 +59,7 @@ class ActorsFragment : Fragment(), ActorsView {
                 presenter.getActorDetail(it.id)
             }
 
-            recyclerView.adapter = adapter
+            mediaRecyclerView.adapter = adapter
 
         } else {
             adapter.addPeople(actors)
@@ -86,7 +86,7 @@ class ActorsFragment : Fragment(), ActorsView {
     }
 
     override fun onLastPageReached() {
-        recyclerView.clearOnScrollListeners()
+        mediaRecyclerView.clearOnScrollListeners()
         Toast.makeText(context, "Não há mais séries para exibir.", Toast.LENGTH_LONG).show()
     }
 }

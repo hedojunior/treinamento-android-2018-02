@@ -41,7 +41,6 @@ class MediaAdapter(private val items: ArrayList<Media>,
     override fun getItemCount() = items.size
 
     fun addItems(list: List<Media>) {
-
         items.addAll(list)
         notifyItemRangeInserted(lastItemPosition, list.size)
         lastItemPosition = items.size

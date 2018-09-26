@@ -3,7 +3,9 @@ package br.com.cwi.cwiflix
 import android.app.Application
 import android.content.Context
 import br.com.cwi.cwiflix.services.SharedPreferencesService
+import br.com.cwi.cwiflix.services.api.MovieDatabaseService
 import br.com.cwi.cwiflix.utils.UserHolder
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 
 /**
@@ -17,6 +19,8 @@ class CWIFlixApplication : Application() {
                 this.getSharedPreferences("CWIFlixApplication", Context.MODE_PRIVATE)
 
         SharedPreferencesService.sharedPreferences = sharedPreferences
+
+        FirebaseApp.initializeApp(this)
 
         UserHolder.user = FirebaseAuth.getInstance().currentUser
     }

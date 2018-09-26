@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_media.*
  */
 class FavoritesFragment : Fragment(), OnFavoritesChangeListener {
     private val adapter: FavoriteAdapter by lazy {
-        recyclerView.addItemDecoration(GridSpacingItemDecoration(2, 15, false))
+        mediaRecyclerView.addItemDecoration(GridSpacingItemDecoration(2, 15, false))
         FavoriteAdapter(FavoritesService.favorites)
     }
 
@@ -36,7 +36,7 @@ class FavoritesFragment : Fragment(), OnFavoritesChangeListener {
     }
 
     override fun onFavoriteAdded() {
-        recyclerView.adapter = adapter
+        mediaRecyclerView.adapter = adapter
     }
 
     override fun onFavoriteRemoved(index: Int) {

@@ -13,9 +13,6 @@ import com.google.firebase.auth.FirebaseUser
  */
 object UserHolder {
     var user: FirebaseUser? = null
-        set(value) {
-            field = value
-        }
 
     var signInOptions: GoogleSignInOptions? = null
 
