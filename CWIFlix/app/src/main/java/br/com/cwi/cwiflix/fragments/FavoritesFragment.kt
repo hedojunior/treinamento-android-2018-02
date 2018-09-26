@@ -10,6 +10,7 @@ import br.com.cwi.cwiflix.adapters.FavoriteAdapter
 import br.com.cwi.cwiflix.listeners.OnFavoritesChangeListener
 import br.com.cwi.cwiflix.services.FavoritesService
 import br.com.cwi.cwiflix.utils.GridSpacingItemDecoration
+import br.com.cwi.cwiflix.utils.UserHolder
 import kotlinx.android.synthetic.main.fragment_media.*
 
 /**
@@ -28,6 +29,10 @@ class FavoritesFragment : Fragment(), OnFavoritesChangeListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         FavoritesService.listener = this
+
+        UserHolder.user?.let {
+            FavoritesService.initialize(it.uid)
+        }
     }
 
     override fun onFavoriteAdded() {

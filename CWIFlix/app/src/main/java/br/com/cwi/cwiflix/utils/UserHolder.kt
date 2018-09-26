@@ -15,12 +15,6 @@ object UserHolder {
     var user: FirebaseUser? = null
         set(value) {
             field = value
-
-            field?.uid?.let {
-                Handler().postDelayed({
-                    FavoritesService.initialize(it)
-                }, 300)
-            }
         }
 
     var signInOptions: GoogleSignInOptions? = null
